@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
 import Search from '../components/Search';
 import Category from '../components/Category';
+import AddRecipeToDb from '../components/AddRecipeToDb';
 
 function Recipe() {
     
@@ -31,6 +32,9 @@ function Recipe() {
                 <img src = {details.image} alt='' />
             </div>
             <Info>
+                <AddRecipeToDb details= {details}>
+
+                </AddRecipeToDb>
                 <Button 
                     className={activeTab === 'instructions' ? 'active' : '' } 
                     onClick={() => setActiveTab('instructions')}>
@@ -88,6 +92,7 @@ const Button = styled.button`
     margin-right: 2rem;
     font-weight: 600;
 `
+
 const Info = styled.div `
     margin-left: 10rem;
 `

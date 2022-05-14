@@ -7,6 +7,7 @@ import Searched from './Searched';
 import { AnimatePresence } from 'framer-motion';
 import Login from './Login';
 import Register from './Register';
+import CuisineUser from './CuisineUser';
 
 
 const Pages = () => {
@@ -42,6 +43,7 @@ const Pages = () => {
           <Route path='/' element={ !auth ? <Login setAuth={setAuth} /> : <Home />} />
           <Route path='/login' element={auth ? <Home /> : <Login setAuth={setAuth} />} />
           <Route path='/register' element={auth ? <Home /> : <Register setAuth={setAuth} />} />
+          <Route path='/user' element={auth ? <CuisineUser /> : <Register setAuth={setAuth} />} />
           <Route path='/cuisine/:type' element={!auth ? <Login /> : <Cuisine />} />
           <Route path='/searched/:search' element={ !auth ? <Login /> : <Searched />} />
           <Route path='/recipe/:name' element={!auth ? <Login /> : <Recipe />} />
