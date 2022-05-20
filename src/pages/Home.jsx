@@ -4,6 +4,7 @@ import Popular from '../components/Popular'
 import { motion } from 'framer-motion'
 import Search from '../components/Search'
 import Category from '../components/Category'
+import AllUsersRecipes from '../components/AllUsersRecipes'
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
         transition={{ duration: 0.8 }}
         >
           <Veggie />
+          <AllUsersRecipes />
           <Popular />
       </motion.div>
       </>

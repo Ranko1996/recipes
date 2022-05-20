@@ -16,10 +16,10 @@ const Register = ({setAuth}) => {
     const [inputs, setInputs] = useState({
         email:"",
         password:"",
-        name:""
+        userName:""
       })
 
-    const {email, password, name} = inputs
+    const {email, password, userName} = inputs
 
     const onChange = (e) => {
         setInputs({...inputs, [e.target.name]: e.target.value})
@@ -29,7 +29,7 @@ const Register = ({setAuth}) => {
         e.preventDefault()
         try {
 
-            const body = {email, password}
+            const body = {userName, email, password}
 
             const response = await fetch("http://localhost:3333/auth/signup", {
                 method: "POST",
@@ -71,18 +71,7 @@ const Register = ({setAuth}) => {
           Register
         </Typography>
         <Box component="form" onSubmit={onSubmitForm} noValidate sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                name="name"
-                required
-                fullWidth
-                label="Name"
-                autoFocus
-                value={name}
-                onChange={e => onChange(e)}
-              />
-            </Grid>
+          <Grid container spacing={3}>
             <Grid item xs={12}>
               <TextField
                 name="email"

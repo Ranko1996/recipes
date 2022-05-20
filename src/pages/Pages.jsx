@@ -2,13 +2,14 @@ import React, {useState, useEffect} from 'react';
 import { Route, Routes, BrowserRouter, useLocation } from 'react-router-dom'
 import Cuisine from './Cuisine';
 import Home from "./Home";
+import UserRecipe from "./UserRecipe";
 import Recipe from './Recipe';
 import Searched from './Searched';
 import { AnimatePresence } from 'framer-motion';
 import Login from './Login';
 import Register from './Register';
 import CuisineUser from './CuisineUser';
-
+import UserRecipeAll from './UserRecipeAll';
 
 const Pages = () => {
   const location = useLocation()
@@ -47,6 +48,8 @@ const Pages = () => {
           <Route path='/cuisine/:type' element={!auth ? <Login /> : <Cuisine />} />
           <Route path='/searched/:search' element={ !auth ? <Login /> : <Searched />} />
           <Route path='/recipe/:name' element={!auth ? <Login /> : <Recipe />} />
+          <Route path='/myRecipe/:id' element={!auth ? <Login /> : <UserRecipe />} />
+          <Route path='/myRecipeAll/:id' element={!auth ? <Login /> : <UserRecipeAll />} />
       </Routes>
     </AnimatePresence>
   )

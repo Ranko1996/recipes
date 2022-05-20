@@ -5,6 +5,9 @@ import { NavLink, useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Search from '../components/Search'
 import Category from '../components/Category'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import AddRecipe from '../components/AddRecipe'
+
 
 const CuisineUser = () => {
     const[recipes, setRecipes] = useState([])
@@ -23,6 +26,18 @@ const CuisineUser = () => {
         }
       }
 
+      async function deleteRecipe(recipeId) {
+        try {
+            const response = await fetch(`http://localhost:3333/post/${recipeId}`,{
+                method:"DELETE",
+                headers: { Authorization: 'Bearer ' + localStorage.access_token, "Content-Type": "application/json" }
+            })
+            setRecipes(recipes.filter(recipes => recipes.id !== recipeId))
+        } catch (error) {
+            console.log(error.message)
+        }
+      }
+
     useEffect(() => {
         getRecipes()
     },[])
@@ -31,14 +46,19 @@ const CuisineUser = () => {
     <>
         <Search />
         <Category />
+        <AddRecipe />
         <Grid>
             {recipes.map((item) => {
                 return (
                     <Card key={item.id}>
-                        <Link to={`/recipe/${item.id}`}>
+                        <Link to={`/myRecipe/${item.id}`}>
                         <img src={item.image} alt="Recipe" />
-                        <h4>{item.title}</h4>
                         </Link>
+                          <h4 style={{display: "inline", marginTop:"1rem"}}>{item.title}</h4>
+                          <DeleteOutlineIcon style={{display: "inline", marginTop:"1rem"}}
+                            sx={{marginLeft:"15px", marginBottom:"-6px", color:"red"}}
+                            onClick={() => deleteRecipe(item.id)}
+                          />
                     </Card>
                 )
             })}
